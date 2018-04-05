@@ -1,0 +1,6 @@
+[package]
+name = "rusttorial"
+version = "0.1.0"
+authors = ["Liam Naddell <liamnprg@gmail.com>"]
+
+[dependencies]
