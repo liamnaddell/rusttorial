@@ -16,6 +16,20 @@ compile: `cargo build`
 
 run: `cargo run`
 
+### Example commands
+
+`cargo run f 4`
+
+This calculates the factorial of four
+
+`cargo run fn 10 3`
+
+This calculates 10!/3!
+
+`cargo run c 5 2`
+
+This runs the choose function on 5 and 2
+
 ## Install
 
 There is no way to install the program that is supported right now
