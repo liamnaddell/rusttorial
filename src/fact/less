@@ -1,0 +1,122 @@
+   Compiling rusttorial v0.1.0 (file:///home/liam/projects/rusttorial)
+error[E0425]: cannot find function `plustorial` in this scope
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:42:20
+   |
+42 |         assert_eq!(plustorial(10,0),55)
+   |                    ^^^^^^^^^^ did you mean `plustorialn`?
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:16:9
+   |
+16 |         assert_eq!(factorialn(5,3), 20);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:17:9
+   |
+17 |         assert_eq!(factorialn(10,3),604800);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:21:9
+   |
+21 |         assert_eq!(factorialn(3,10), 0);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:25:9
+   |
+25 |         assert_eq!(factorial(20), 2432902008176640000);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:29:9
+   |
+29 |         assert_eq!(factorial(0), 0);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:33:9
+   |
+33 |         assert_eq!(c(6,2),15);
+   |         ^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:34:9
+   |
+34 |         assert_eq!(c(6,4),15);
+   |         ^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:35:9
+   |
+35 |         assert_eq!(c(8,3),56);
+   |         ^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:36:9
+   |
+36 |         assert_eq!(c(8,5),56);
+   |         ^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:37:9
+   |
+37 |         assert_eq!(c(8,0),1);
+   |         ^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error[E0308]: mismatched types
+  --> /home/liam/projects/rusttorial/src/fact/mod.rs:38:9
+   |
+38 |         assert_eq!(c(26,2),325);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `fact::num_bigint::BigUint`, found integral variable
+   |
+   = note: expected type `fact::num_bigint::BigUint`
+              found type `{integer}`
+   = note: this error originates in a macro outside of the current crate
+
+error: aborting due to 12 previous errors
+
+error: Could not compile `rusttorial`.
+
+To learn more, run the command again with --verbose.

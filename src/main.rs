@@ -11,6 +11,10 @@ fn main() {
         rusttorial c 4 2 = 6
         it is calculated with
         fn(num1,num1-num2)/f(num2);
+    p is the plustorial function 
+        plustorial is a factorial with addition instead of multiplication
+    pn is the plustorial function that stops at stop ex.
+        rusttorial pn 5 3 = 5+4
                              ");
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -20,6 +24,8 @@ fn main() {
         if args.len() < 4 { 
             if args[1] == "f" {
                 println!("{}",fact::factorial(t(&args[2])));
+            } else if args[1] == "p" {
+                println!("{}",fact::plustorial(t(&args[2])));
             } else {
                 println!("{}",usage);
             }
@@ -29,6 +35,9 @@ fn main() {
             }
             if args[1] == "c" {
                 println!("{}",fact::c(t(&args[2]), t(&args[3])));
+            }
+            if args[1] == "pn" {
+                println!("{}",fact::plustorialn(t(&args[2]), t(&args[3])));
             }
         }
     }
