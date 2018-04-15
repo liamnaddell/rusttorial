@@ -96,5 +96,6 @@ pub fn plustorialn(mut num: u64, stop: u64) -> BigUint {
 }
 
 pub fn plustorial(num: u64) -> BigUint {
-    plustorialn(num,0)
+    plustorialn(num, 0)
+
 }

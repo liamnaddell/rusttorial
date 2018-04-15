@@ -1,4 +1,7 @@
+extern crate ncurses;
 use std::env;
+use ncurses::*;
+use std::char;
 mod fact;
 
 fn main() {
@@ -22,27 +25,46 @@ fn main() {
 
     } else {
         if args.len() < 4 { 
-            if args[1] == "f" {
-                println!("{}",fact::factorial(t(&args[2])));
-            } else if args[1] == "p" {
-                println!("{}",fact::plustorial(t(&args[2])));
-            } else {
-                println!("{}",usage);
+            match args[1].as_ref() {
+                "f" => println!("{}",fact::factorial(t(&args[2]))),
+                "p" => println!("{}",fact::plustorial(t(&args[2]))),
+                "n" => cli(),
+                _ => println!("{}",usage),
+
             }
         } else {
-            if args[1] == "fn" {
-                println!("{}",fact::factorialn(t(&args[2]), t(&args[3])));
-            }
-            if args[1] == "c" {
-                println!("{}",fact::c(t(&args[2]), t(&args[3])));
-            }
-            if args[1] == "pn" {
-                println!("{}",fact::plustorialn(t(&args[2]), t(&args[3])));
+            match args[1].as_ref() {
+            "fn" => println!("{}",fact::factorialn(t(&args[2]), t(&args[3]))),
+            "c" => println!("{}",fact::c(t(&args[2]), t(&args[3]))),
+            "pn" => println!("{}",fact::plustorialn(t(&args[2]), t(&args[3]))),
+            _ => println!("{}", usage),
             }
         }
     }
 }
 
-    fn t(s: &String) -> u64 {
-        return s.parse::<u64>().unwrap();
+fn t(s: &String) -> u64 {
+    return s.parse::<u64>().unwrap();
+}
+
+fn cli() {
+    initscr();
+    keypad(stdscr(), true);
+    noecho();
+    let mut user_inp: Vec<u32> = Vec::new();
+    loop {
+        printw("Prelude>");
+        loop {
+            let ch = getch();
+            pch(ch as u32);
+            user_inp.push(ch as u32);
+            if ch == KEY_F5 {
+                endwin();
+            }
+        }
     }
+}
+
+fn pch(ch: u32) {
+    printw(format!("{}", char::from_u32(ch).expect("Invalid Char")).as_ref());
+}
