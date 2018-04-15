@@ -1,7 +1,4 @@
-extern crate ncurses;
 use std::env;
-use ncurses::*;
-use std::char;
 mod fact;
 
 fn main() {
@@ -28,7 +25,6 @@ fn main() {
             match args[1].as_ref() {
                 "f" => println!("{}",fact::factorial(t(&args[2]))),
                 "p" => println!("{}",fact::plustorial(t(&args[2]))),
-                "n" => cli(),
                 _ => println!("{}",usage),
 
             }
@@ -47,6 +43,7 @@ fn t(s: &String) -> u64 {
     return s.parse::<u64>().unwrap();
 }
 
+/*
 fn cli() {
     initscr();
     keypad(stdscr(), true);
@@ -63,8 +60,8 @@ fn cli() {
             }
         }
     }
-}
+}*/
 
-fn pch(ch: u32) {
-    printw(format!("{}", char::from_u32(ch).expect("Invalid Char")).as_ref());
-}
+//fn pch(ch: u32) {
+ //   printw(format!("{}", char::from_u32(ch).expect("Invalid Char")).as_ref());
+//}
