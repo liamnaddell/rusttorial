@@ -1,5 +1,7 @@
 use std::env;
+use std::error::Error; 
 mod fact;
+use std::string::String;
 
 fn main() {
     let usage = String::from("USAGE: rusttorial f|fn|c num [num2]
@@ -16,52 +18,69 @@ fn main() {
     pn is the plustorial function that stops at stop ex.
         rusttorial pn 5 3 = 5+4
                              ");
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 3 {
+    //let args: Vec<String> = env::args().collect();
+    if env::args().len() < 3 {
         println!("{}",usage);
 
     } else {
-        if args.len() < 4 { 
-            match args[1].as_ref() {
-                "f" => println!("{}",fact::factorial(t(&args[2]))),
-                "p" => println!("{}",fact::plustorial(t(&args[2]))),
-                _ => println!("{}",usage),
+        //get arg 2 here
+        let (arg2, is_ok) = getargi(2);
+        let (arg1, is_k) = getarg(1);
+        if is_ok && is_k {
+            if env::args().len() < 4 { 
+                match arg1.as_ref() {
+                    "f" => println!("{}",fact::factorial(arg2)),
+                    "p" => println!("{}",fact::plustorial(arg2)),
+                    _ => println!("{}",usage),
 
+                }
+            } else {
+                //get args here
+                let (arg3, am_ok) = getargi(3);
+                if am_ok {
+                    match arg1.as_ref() {
+                        "fn" => println!("{}",fact::factorialn(arg2, arg3)),
+                        "c" => println!("{}",fact::c(arg2, arg3)),
+                        "pn" => println!("{}",fact::plustorialn(arg2, arg3)),
+                        _ => println!("{}", usage),
+                    }
+                }
             }
-        } else {
-            match args[1].as_ref() {
-            "fn" => println!("{}",fact::factorialn(t(&args[2]), t(&args[3]))),
-            "c" => println!("{}",fact::c(t(&args[2]), t(&args[3]))),
-            "pn" => println!("{}",fact::plustorialn(t(&args[2]), t(&args[3]))),
-            _ => println!("{}", usage),
-            }
-        }
+        } 
     }
 }
 
-fn t(s: &String) -> u64 {
-    return s.parse::<u64>().unwrap();
+fn t(s: &String) -> Result<u64,std::num::ParseIntError> {
+    s.parse::<u64>() 
 }
 
-/*
-fn cli() {
-    initscr();
-    keypad(stdscr(), true);
-    noecho();
-    let mut user_inp: Vec<u32> = Vec::new();
-    loop {
-        printw("Prelude>");
-        loop {
-            let ch = getch();
-            pch(ch as u32);
-            user_inp.push(ch as u32);
-            if ch == KEY_F5 {
-                endwin();
-            }
+fn getargi(i: usize) -> (u64, bool) {
+    let mut ok: bool = true;
+    let arg2_option: String = match env::args().nth(i) {
+        Some(v) => v,
+        None => {
+                    println!("{}", "There was an error parsing your arguments");
+                    ok = false;
+                    String::from("")
+                },
+    };
+    let arg2_err = t(&arg2_option);
+    let arg2 = match arg2_err {
+        Ok(arg2) => arg2,
+        Err(error) => {
+            println!("{}", error.description());
+            ok = false;
+            0
         }
-    }
-}*/
+    };
+    return (arg2, ok)
+}
 
-//fn pch(ch: u32) {
- //   printw(format!("{}", char::from_u32(ch).expect("Invalid Char")).as_ref());
-//}
+fn getarg(i: usize) -> (String, bool) {
+    let ok: bool = true;
+    let arg2: String = match env::args().nth(i) {
+        Some(v) => v,
+        None => panic!("lol"),
+    };
+    return (arg2, ok)
+}

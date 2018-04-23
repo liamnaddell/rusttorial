@@ -26,7 +26,7 @@ mod tests {
     }
     #[test]
     fn test_factorial_zero() {
-        assert_eq!(factorial(0), t(b"0"));
+        assert_eq!(factorial(0), t(b"1"));
     }
     #[test]
     fn test_c() {
@@ -48,37 +48,39 @@ mod tests {
 }
 
 pub fn factorialn(mut num: u64, stop: u64) -> BigUint {
+
     let mut new_num: BigUint = One::one();
     if stop >= num {
         new_num = Zero::zero();
     } 
+
     while num >= stop+1 {
         if num == stop+1 {
             new_num=new_num*num;
             num = num-1;
         } else {
             new_num=new_num*num;
-            num = num -1
+            num = num -1;
         }
     }
     return new_num;
 }
 
 pub fn factorial(num: u64) -> BigUint {
-    factorialn(num, 0)
+    factorialn(num, Zero::zero())
 }
 
 pub fn c(top:u64,bottom:u64) -> BigUint {
-    if bottom != 0 {
-        let retnum = factorialn(top,top-bottom)/factorial(bottom);
+    if bottom != Zero::zero() {
+        let retnum: BigUint = factorialn(top,top-bottom)/factorial(bottom);
         return retnum;
     } else {
         return One::one();
     }
-
 }
 
-pub fn plustorialn(mut num: u64, stop: u64) -> BigUint {
+pub fn plustorialn(num: u64, stop: u64) -> BigUint {
+    /*
     let mut new_num: BigUint = Zero::zero();
     if stop >= num {
         new_num = Zero::zero();
@@ -92,10 +94,21 @@ pub fn plustorialn(mut num: u64, stop: u64) -> BigUint {
             num = num -1
         }
     }
-    new_num
+    new_num*/
+    plustorial(num)-plustorial(stop)
 }
 
 pub fn plustorial(num: u64) -> BigUint {
-    plustorialn(num, 0)
+    //(n(n+1))/2
+    let t: u64 = 2;
+    let two = BigUint::from(t);
+    let o: u64 = 1;
+    let one: BigUint = BigUint::from(o);
 
+    let big_num = &BigUint::from(num);
+    let n_plus_one: BigUint = big_num+one;
+
+    let ntn: BigUint = n_plus_one*big_num;
+    let nd2: BigUint = ntn/two;
+    nd2
 }
