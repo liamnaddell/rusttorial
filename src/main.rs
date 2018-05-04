@@ -2,6 +2,7 @@ use std::env;
 use std::error::Error; 
 mod fact;
 use std::string::String;
+use std::ffi::OsString;
 
 fn main() {
     let usage = String::from("USAGE: rusttorial f|fn|c num [num2]
@@ -19,7 +20,7 @@ fn main() {
         rusttorial pn 5 3 = 5+4
                              ");
     //let args: Vec<String> = env::args().collect();
-    if env::args().len() < 3 {
+    if env::args_os().len() < 3 {
         println!("{}",usage);
 
     } else {
@@ -27,7 +28,7 @@ fn main() {
         let (arg2, is_ok) = getargi(2);
         let (arg1, is_k) = getarg(1);
         if is_ok && is_k {
-            if env::args().len() < 4 { 
+            if env::args_os().len() < 4 { 
                 match arg1.as_ref() {
                     "f" => println!("{}",fact::factorial(arg2)),
                     "p" => println!("{}",fact::plustorial(arg2)),
@@ -56,15 +57,19 @@ fn t(s: &String) -> Result<u64,std::num::ParseIntError> {
 
 fn getargi(i: usize) -> (u64, bool) {
     let mut ok: bool = true;
-    let arg2_option: String = match env::args().nth(i) {
+
+    let arg2_option: OsString = match env::args_os().nth(i) {
         Some(v) => v,
         None => {
                     println!("{}", "There was an error parsing your arguments");
                     ok = false;
-                    String::from("")
+                    OsString::from("")
                 },
     };
-    let arg2_err = t(&arg2_option);
+
+    let arg2_string: String = os_string_to_string(arg2_option);
+
+    let arg2_err = t(&arg2_string);
     let arg2 = match arg2_err {
         Ok(arg2) => arg2,
         Err(error) => {
@@ -73,14 +78,21 @@ fn getargi(i: usize) -> (u64, bool) {
             0
         }
     };
+
     return (arg2, ok)
 }
 
 fn getarg(i: usize) -> (String, bool) {
     let ok: bool = true;
-    let arg2: String = match env::args().nth(i) {
+    let arg2: OsString = match env::args_os().nth(i) {
         Some(v) => v,
         None => panic!("lol"),
     };
-    return (arg2, ok)
+    let arg2_string: String = os_string_to_string(arg2);
+    return (arg2_string, ok)
+}
+
+
+fn os_string_to_string(s: OsString) -> String {
+    s.to_string_lossy().to_string()
 }
