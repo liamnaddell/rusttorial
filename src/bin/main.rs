@@ -1,12 +1,13 @@
-extern crate num_bigint;
+extern crate num;
 extern crate rusttorial;
-use rusttorial::Factorize;
-use std::env;
-use std::error::Error; 
-//mod fact;
+
+use rusttorial::{c,factorial,factorialn,plustorial,plustorialn};
+use num::bigint::BigUint;
+use std::process::exit;
 use std::string::String;
 use std::ffi::OsString;
-use num_bigint::BigUint;
+use std::env;
+use std::error::Error; 
 
 
 fn main() {
@@ -35,8 +36,8 @@ fn main() {
         if is_ok && is_k {
             if env::args_os().len() < 4 { 
                 match arg1.as_ref() {
-                    "f" => p(arg2.factorial()),
-                    "p" => p(arg2.plustorial()),
+                    "f" => p(factorial(arg2)),
+                    "p" => p(plustorial(arg2)),
                     _ => println!("{}",usage),
 
                 }
@@ -45,9 +46,15 @@ fn main() {
                 let (arg3, am_ok) = getargi(3);
                 if am_ok {
                     match arg1.as_ref() {
-                        "fn" => p(arg2.factorialn(&arg3)),
-                        "c" => p(arg2.c(&arg3)),
-                        "pn" => p(arg2.plustorialn(&arg3)),
+                        "fn" => p(factorialn(arg2,arg3)),
+                        "c" => { 
+                            let ret = c(arg2,arg3).unwrap_or_else(|| {
+                                println!("rusttorial: integer overflow. Try specifying values like this: rusttorial c 5 4");
+                                exit(1)
+                            });
+                            p(ret);
+                        }
+                        "pn" => p(plustorialn(arg2,arg3)),
                         _ => println!("{}", usage),
                     }
                 }

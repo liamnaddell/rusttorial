@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Liam Naddell <liamnprg@gmail.com>"]
 
 [dependencies]
-num-bigint = "0.1"
-num-traits = "0.2"
-#quickcheck = "0.6"
+num = "0.2.0"
+failure = "0.1.1"
+rayon = "1.0"
