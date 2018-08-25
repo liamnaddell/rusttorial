@@ -101,7 +101,7 @@ fn getargi(i: usize) -> (u64, bool) {
     };
 
     //return if ok, and return ints
-    return (arg2, ok)
+    (arg2, ok)
 }
 
 //get arg string
@@ -114,7 +114,7 @@ fn getarg(i: usize) -> (String, bool) {
         None => panic!("error getting arguments"),
     };
     let arg2_string: String = os_string_to_string(arg2);
-    return (arg2_string, ok)
+    (arg2_string, ok)
 }
 
 
